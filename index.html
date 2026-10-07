@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Otimização SEO para Grande Campinas -->
+    <title>Felipe Audiovisual | Diretor & Videomaker em Campinas</title>
+    <meta name="description" content="Portfólio de produção audiovisual, direção, edição e roteiro. Foco em vídeos verticais, Reels e conteúdo de alta conversão na Grande Campinas.">
+    <meta name="keywords" content="audiovisual, videomaker campinas, felipe audiovisual, produtor de video campinas, reels, tiktok, instagram, grande campinas">
+    
+    <!-- Bibliotecas de Estilo e Fontes -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <!-- Fontes Premium: Montserrat (Títulos) e Inter (Textos base) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Montserrat:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- Configuração de Cores Personalizadas (Tailwind) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            black: '#0a0a0a',
+                            dark: '#121212',
+                            gray: '#1f1f1f',
+                            accent: '#d4af37', // Dourado premium
+                            accentHover: '#b5952f',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #0a0a0a;
+            color: #f3f4f6;
+        }
+        
+        .font-heading {
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Classes para animação de scroll (Intersection Observer) */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Efeito glassmorphism para o navbar */
+        .glass-nav {
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* Proporções de Vídeo */
+        .aspect-w-16 { position: relative; padding-bottom: 56.25%; } /* 16:9 Youtube */
+        .aspect-w-9 { position: relative; padding-bottom: 177.77%; } /* 9:16 Reels/TikTok */
+        .aspect-content { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+    </style>
+</head>
+<body class="antialiased selection:bg-brand-accent selection:text-black relative">
+
+    <header class="fixed w-full top-0 z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0">
+                    <a href="#" class="font-heading font-bold text-2xl tracking-tighter text-white">
+                        FELIPE<span class="text-brand-accent">AUDIOVISUAL</span>
+                    </a>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <nav class="hidden md:block">
+                    <ul class="flex space-x-8 items-center text-sm font-medium text-gray-300">
+                        <li><a href="#sobre" class="hover:text-brand-accent transition-colors">Sobre</a></li>
+                        <li><a href="#portfolio" class="hover:text-brand-accent transition-colors">Portfólio</a></li>
+                        <li><a href="#servicos" class="hover:text-brand-accent transition-colors">Especialidades</a></li>
+                        <li>
+                            <a href="#" class="open-wa-modal bg-brand-accent text-black px-6 py-2.5 rounded-full font-semibold hover:bg-brand-accentHover transition-colors shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:shadow-[0_0_25px_rgba(212,175,55,0.5)]">
+                                Fale Comigo
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Panel (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-brand-dark border-b border-gray-800">
+            <ul class="px-4 pt-2 pb-6 space-y-4 text-center">
+                <li><a href="#sobre" class="block text-gray-300 hover:text-brand-accent transition-colors">Sobre</a></li>
+                <li><a href="#portfolio" class="block text-gray-300 hover:text-brand-accent transition-colors">Portfólio</a></li>
+                <li><a href="#servicos" class="block text-gray-300 hover:text-brand-accent transition-colors">Especialidades</a></li>
+                <li class="pt-2">
+                    <a href="#" class="open-wa-modal inline-block bg-brand-accent text-black px-8 py-3 rounded-full font-semibold">
+                        Fale Comigo
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="relative h-screen flex items-center justify-center overflow-hidden">
+            <!-- Hero Background Placeholder (Recomendo um still de vídeo seu, ou um vídeo em loop) -->
+            <div class="absolute inset-0 z-0">
+                <img src="https://placehold.co/1920x1080/0a0a0a/333333?text=Hero+Background+(1920x1080)+\nColoque+aqui+um+frame+impactante+de+um+trabalho+seu" alt="Background de Produção Audiovisual" class="w-full h-full object-cover opacity-40">
+                <div class="absolute inset-0 bg-gradient-to-b from-brand-black/60 via-brand-black/80 to-brand-black"></div>
+            </div>
+
+            <div class="relative z-10 text-center px-6 max-w-4xl mx-auto mt-16 fade-in-up">
+                <span class="text-brand-accent font-semibold tracking-widest text-sm uppercase mb-4 block">Filmmaker & Diretor Criativo</span>
+                <h1 class="font-heading text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
+                    Narrativas Visuais Que <br class="hidden md:block"/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-accent to-yellow-200">Conectam e Convertem</span>
+                </h1>
+                <p class="text-lg md:text-xl text-gray-400 mb-10 max-w-2xl mx-auto font-light">
+                    Produção audiovisual de alto padrão para marcas, artistas e criadores. Elevando a qualidade do seu conteúdo na Grande Campinas e em todo o Brasil.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#portfolio" class="w-full sm:w-auto bg-white text-black px-8 py-4 rounded-full font-semibold hover:bg-gray-200 transition-colors flex items-center justify-center gap-2">
+                        <i class="fas fa-play text-sm"></i> Ver Portfólio
+                    </a>
+                    <a href="#" class="open-wa-modal w-full sm:w-auto bg-transparent border border-gray-500 text-white px-8 py-4 rounded-full font-semibold hover:border-brand-accent hover:text-brand-accent transition-colors">
+                        Solicitar Orçamento
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Profile / About Section -->
+        <section id="sobre" class="py-24 bg-brand-dark">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    
+                    <!-- Headshot / Action Shot Placeholder -->
+                    <div class="relative fade-in-up group">
+                        <div class="absolute -inset-2 bg-gradient-to-tr from-brand-accent to-transparent rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition duration-500"></div>
+                        <img src="Red Camera Action shot.jpg" alt="Felipe Operando Câmera RED" class="relative rounded-2xl shadow-2xl object-cover w-full max-w-md mx-auto lg:max-w-full">
+                        
+                        <!-- Floating badge -->
+                        <div class="absolute -bottom-6 -right-6 lg:-right-10 bg-brand-gray p-6 rounded-xl border border-gray-800 shadow-xl hidden md:block">
+                            <div class="flex items-center gap-4">
+                                <div class="bg-brand-accent/20 p-3 rounded-full text-brand-accent">
+                                    <i class="fas fa-film text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-3xl font-bold text-white font-heading">+250</p>
+                                    <p class="text-sm text-gray-400">Projetos Entregues</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Text Content -->
+                    <div class="fade-in-up" style="transition-delay: 200ms;">
+                        <h2 class="font-heading text-3xl md:text-5xl font-bold text-white mb-6">
+                            A arte de traduzir a sua visão em <span class="text-brand-accent">impacto real.</span>
+                        </h2>
+                        <div class="space-y-6 text-gray-400 leading-relaxed text-lg font-light">
+                            <p>
+                                Olá, eu sou o <strong>Felipe</strong>. Com anos de experiência no mercado audiovisual, minha missão é capturar a essência da sua marca e transformá-la em uma experiência visual inesquecível, especialmente nos formatos de maior engajamento.
+                            </p>
+                            <p>
+                                Baseado na Grande Campinas, trabalho com roteiro, direção, edição e sonorização, oferecendo um processo de ponta a ponta. Meu foco não é apenas criar vídeos bonitos, mas desenvolver ferramentas estratégicas em formato vertical (Reels/TikTok) e horizontal que geram retenção e conversão para o seu negócio.
+                            </p>
+                        </div>
+                        
+                        <!-- Mini Credenciais -->
+                        <div class="mt-10 grid grid-cols-2 gap-6">
+                            <div>
+                                <h4 class="text-white font-semibold mb-2">Setup Premium</h4>
+                                <p class="text-sm text-gray-500">Câmeras de cinema, iluminação de ponta e drones.</p>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-semibold mb-2">Entrega Ágil</h4>
+                                <p class="text-sm text-gray-500">Fluxos de trabalho otimizados para cumprir prazos.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Portfolio Section -->
+        <section id="portfolio" class="py-24 bg-brand-black">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                
+                <div class="text-center mb-16 fade-in-up">
+                    <span class="text-brand-accent font-semibold tracking-wider text-sm uppercase">Trabalhos em Destaque</span>
+                    <h2 class="font-heading text-4xl md:text-5xl font-bold text-white mt-4">Conteúdo Vertical de Alta Performance</h2>
+                    <p class="mt-4 text-gray-400 max-w-2xl mx-auto">Produções criadas nativamente para Reels e TikTok, focadas em retenção, estética premium e conversão.</p>
+                </div>
+
+                <!-- Grid de Projetos Verticais -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Projeto Vertical 1 -->
+                    <article class="bg-brand-gray rounded-3xl overflow-hidden border border-gray-800 hover:border-brand-accent/50 transition-colors duration-300 fade-in-up group flex flex-col shadow-lg">
+                        <div class="relative w-full aspect-[9/16] bg-black border-b border-gray-800 overflow-hidden">
+                            <iframe class="absolute inset-0 w-full h-full" src="https://www.instagram.com/p/CpffGpoOVxC/embed/?theme=dark" frameborder="0" scrolling="no" allowtransparency="true" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="font-heading text-lg font-bold text-white mb-1">Cobertura do Carnaval de São Paulo</h3>
+                                <p class="text-gray-400 text-xs mb-4">Ação & Movimento</p>
+                                <div class="flex gap-3 text-xs text-gray-300 font-medium bg-brand-dark px-3 py-1.5 rounded-lg border border-gray-700 w-fit">
+                                    <span class="flex items-center gap-1.5" title="Visualizações"><i class="fas fa-play text-brand-accent"></i> 125K</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <span class="px-2 py-1 bg-brand-accent/20 text-brand-accent border border-brand-accent/30 text-[10px] rounded-full font-bold uppercase">Captação</span>
+                                <span class="px-2 py-1 bg-gray-800 text-gray-300 text-[10px] rounded-full font-medium uppercase">Direção</span>
+                                <span class="px-2 py-1 bg-gray-800 text-gray-300 text-[10px] rounded-full font-medium uppercase">Edição</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Projeto Vertical 2 -->
+                    <article class="bg-brand-gray rounded-3xl overflow-hidden border border-gray-800 hover:border-brand-accent/50 transition-colors duration-300 fade-in-up group flex flex-col shadow-lg" style="transition-delay: 100ms;">
+                        <div class="relative w-full aspect-[9/16] bg-black border-b border-gray-800 overflow-hidden">
+                            <iframe class="absolute inset-0 w-full h-full" src="https://www.instagram.com/p/ColRCIHpFCG/embed/?theme=dark" frameborder="0" scrolling="no" allowtransparency="true" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="font-heading text-lg font-bold text-white mb-1">Evento Nacional</h3>
+                                <p class="text-gray-400 text-xs mb-4">Cobertura / Aftermovie</p>
+                                <div class="flex gap-3 text-xs text-gray-300 font-medium bg-brand-dark px-3 py-1.5 rounded-lg border border-gray-700 w-fit">
+                                    <span class="flex items-center gap-1.5" title="Visualizações"><i class="fas fa-play text-brand-accent"></i> 89K</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <span class="px-2 py-1 bg-brand-accent/20 text-brand-accent border border-brand-accent/30 text-[10px] rounded-full font-bold uppercase">Captação</span>
+                                <span class="px-2 py-1 bg-gray-800 text-gray-300 text-[10px] rounded-full font-medium uppercase">Direção</span>
+                                <span class="px-2 py-1 bg-gray-800 text-gray-300 text-[10px] rounded-full font-medium uppercase">Edição</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Projeto Vertical 3 -->
+                    <article class="bg-brand-gray rounded-3xl overflow-hidden border border-gray-800 hover:border-brand-accent/50 transition-colors duration-300 fade-in-up group flex flex-col shadow-lg" style="transition-delay: 200ms;">
+                        <div class="relative w-full aspect-[9/16] bg-black border-b border-gray-800 overflow-hidden">
+                            <iframe class="absolute inset-0 w-full h-full" src="https://www.instagram.com/p/C7Eoh8HsZJ5/embed/?theme=dark" frameborder="0" scrolling="no" allowtransparency="true" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="font-heading text-lg font-bold text-white mb-1">Festival de Rock</h3>
+                                <p class="text-gray-400 text-xs mb-4">Música & Performance</p>
+                                <div class="flex gap-3 text-xs text-gray-300 font-medium bg-brand-dark px-3 py-1.5 rounded-lg border border-gray-700 w-fit">
+                                    <span class="flex items-center gap-1.5" title="Visualizações"><i class="fas fa-play text-brand-accent"></i> 320K</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <span class="px-2 py-1 bg-brand-accent/20 text-brand-accent border border-brand-accent/30 text-[10px] rounded-full font-bold uppercase">Roteiro</span>
+                                <span class="px-2 py-1 bg-gray-800 text-gray-300 text-[10px] rounded-full font-medium uppercase">Captação</span>
+                                <span class="px-2 py-1 bg-gray-800 text-gray-300 text-[10px] rounded-full font-medium uppercase">Direção</span>
+                                <span class="px-2 py-1 bg-gray-800 text-gray-300 text-[10px] rounded-full font-medium uppercase">Edição</span>
+                            </div>
+                        </div>
+                    </article>
+                    
+                    <!-- Projeto Vertical 4 -->
+                    <article class="bg-brand-gray rounded-3xl overflow-hidden border border-gray-800 hover:border-brand-accent/50 transition-colors duration-300 fade-in-up group flex flex-col shadow-lg" style="transition-delay: 300ms;">
+                        <div class="relative w-full aspect-[9/16] bg-black border-b border-gray-800 overflow-hidden">
+                            <iframe class="absolute inset-0 w-full h-full" src="https://www.instagram.com/p/C-3aZB6ps_0/embed/?theme=dark" frameborder="0" scrolling="no" allowtransparency="true" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="font-heading text-lg font-bold text-white mb-1">Marketing Direto</h3>
+                                <p class="text-gray-400 text-xs mb-4">Campanha Digital</p>
+                                <div class="flex gap-3 text-xs text-gray-300 font-medium bg-brand-dark px-3 py-1.5 rounded-lg border border-gray-700 w-fit">
+                                    <span class="flex items-center gap-1.5" title="Visualizações"><i class="fas fa-play text-brand-accent"></i> 215K</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mt-4">
+                                <span class="px-2 py-1 bg-brand-accent/20 text-brand-accent border border-brand-accent/30 text-[10px] rounded-full font-bold uppercase">Filmagem</span>
+                                <span class="px-2 py-1 bg-gray-800 text-gray-300 text-[10px] rounded-full font-medium uppercase">Atuação</span>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+
+                <div class="text-center mt-24 mb-16 fade-in-up">
+                    <span class="text-brand-accent font-semibold tracking-wider text-sm uppercase">Produções Horizontais</span>
+                    <h2 class="font-heading text-4xl md:text-5xl font-bold text-white mt-4">Videoclipes & Campanhas</h2>
+                    <p class="mt-4 text-gray-400 max-w-2xl mx-auto">Filmes e clipes musicais no formato clássico 16:9, produzidos com padrão de cinema para YouTube e TV.</p>
+                </div>
+
+                <!-- Grid de Projetos Horizontais (YouTube / Vimeo) -->
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    
+                    <!-- Horizontal 1 (YouTube - Smart Thumbnail Fix) -->
+                    <article class="bg-brand-gray rounded-3xl overflow-hidden border border-gray-800 hover:border-brand-accent/50 transition-colors duration-300 fade-in-up group flex flex-col shadow-lg">
+                        <div class="relative w-full aspect-[16/9] bg-black border-b border-gray-800 overflow-hidden">
+                            <!-- Smart Thumbnail puxando a capa em alta resolução do YouTube -->
+                            <img src="https://img.youtube.com/vi/IIsJOwpErNI/maxresdefault.jpg" alt="Videoclipe para o canal KondZilla" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100">
+                            <!-- Botão Play Overlay -->
+                            <a href="https://youtu.be/IIsJOwpErNI" target="_blank" rel="noopener noreferrer" class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-transparent transition-colors">
+                                <div class="bg-brand-accent text-black w-16 h-16 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-all shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+                                    <i class="fas fa-play text-xl ml-1"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="font-heading text-xl font-bold text-white mb-1">Videoclipe para o canal KondZilla</h3>
+                                    <p class="text-gray-400 text-sm">Produção Musical Visual</p>
+                                </div>
+                                <div class="flex text-sm text-gray-300 font-medium bg-brand-dark px-3 py-1.5 rounded-lg border border-gray-700 h-fit">
+                                    <span class="flex items-center gap-1.5"><i class="fas fa-play text-brand-accent"></i> 140K</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-brand-accent/20 text-brand-accent border border-brand-accent/30 text-[10px] rounded-full font-bold uppercase">Roteiro</span>
+                                <span class="px-3 py-1 bg-brand-dark text-gray-300 text-[10px] rounded-full font-medium uppercase border border-gray-700">Storyboarding</span>
+                                <span class="px-3 py-1 bg-brand-dark text-gray-300 text-[10px] rounded-full font-medium uppercase border border-gray-700">Direção</span>
+                                <span class="px-3 py-1 bg-brand-dark text-gray-300 text-[10px] rounded-full font-medium uppercase border border-gray-700">Atuação</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Horizontal 2 (YouTube - Smart Thumbnail Fix) -->
+                    <article class="bg-brand-gray rounded-3xl overflow-hidden border border-gray-800 hover:border-brand-accent/50 transition-colors duration-300 fade-in-up group flex flex-col shadow-lg" style="transition-delay: 100ms;">
+                        <div class="relative w-full aspect-[16/9] bg-black border-b border-gray-800 overflow-hidden">
+                            <img src="https://img.youtube.com/vi/PMEdnJA_zUM/maxresdefault.jpg" alt="Live Session" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100">
+                            <a href="https://youtu.be/PMEdnJA_zUM" target="_blank" rel="noopener noreferrer" class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-transparent transition-colors">
+                                <div class="bg-brand-accent text-black w-16 h-16 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-all shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+                                    <i class="fas fa-play text-xl ml-1"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="font-heading text-xl font-bold text-white mb-1">Live Session</h3>
+                                    <p class="text-gray-400 text-sm">Estúdio & Performance</p>
+                                </div>
+                                <div class="flex text-sm text-gray-300 font-medium bg-brand-dark px-3 py-1.5 rounded-lg border border-gray-700 h-fit">
+                                    <span class="flex items-center gap-1.5"><i class="fas fa-play text-brand-accent"></i> 320K</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-brand-accent/20 text-brand-accent border border-brand-accent/30 text-[10px] rounded-full font-bold uppercase">Edição</span>
+                                <span class="px-3 py-1 bg-brand-dark text-gray-300 text-[10px] rounded-full font-medium uppercase border border-gray-700">Câmera</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Horizontal 3 (YouTube - Smart Thumbnail Fix) -->
+                    <article class="bg-brand-gray rounded-3xl overflow-hidden border border-gray-800 hover:border-brand-accent/50 transition-colors duration-300 fade-in-up group flex flex-col shadow-lg" style="transition-delay: 200ms;">
+                        <div class="relative w-full aspect-[16/9] bg-black border-b border-gray-800 overflow-hidden">
+                            <img src="https://img.youtube.com/vi/dL4bZwJ3siA/maxresdefault.jpg" alt="Clipe Oficial" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100">
+                            <a href="https://youtu.be/dL4bZwJ3siA" target="_blank" rel="noopener noreferrer" class="absolute inset-0 flex items-center justify-center bg-black/20 group-hover:bg-transparent transition-colors">
+                                <div class="bg-brand-accent text-black w-16 h-16 rounded-full flex items-center justify-center transform group-hover:scale-110 transition-all shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+                                    <i class="fas fa-play text-xl ml-1"></i>
+                                </div>
+                            </a>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="font-heading text-xl font-bold text-white mb-1">Clipe Oficial</h3>
+                                    <p class="text-gray-400 text-sm">Banda / Artista</p>
+                                </div>
+                                <div class="flex text-sm text-gray-300 font-medium bg-brand-dark px-3 py-1.5 rounded-lg border border-gray-700 h-fit">
+                                    <span class="flex items-center gap-1.5"><i class="fas fa-play text-brand-accent"></i> 85K</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-brand-accent/20 text-brand-accent border border-brand-accent/30 text-[10px] rounded-full font-bold uppercase">Roteiro</span>
+                                <span class="px-3 py-1 bg-brand-dark text-gray-300 text-[10px] rounded-full font-medium uppercase border border-gray-700">Filmagem</span>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!-- Horizontal 4 (Vimeo - Permite Embed Normal, mantido como estava) -->
+                    <article class="bg-brand-gray rounded-3xl overflow-hidden border border-gray-800 hover:border-brand-accent/50 transition-colors duration-300 fade-in-up group flex flex-col shadow-lg" style="transition-delay: 300ms;">
+                        <div class="relative w-full aspect-[16/9] bg-black border-b border-gray-800 overflow-hidden">
+                            <iframe class="absolute inset-0 w-full h-full" src="https://player.vimeo.com/video/195676763?color=d4af37&title=0&byline=0&portrait=0" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen></iframe>
+                        </div>
+                        <div class="p-6 flex-grow flex flex-col justify-between">
+                            <div class="flex justify-between items-start mb-4">
+                                <div>
+                                    <h3 class="font-heading text-xl font-bold text-white mb-1">Curta / Fashion Film</h3>
+                                    <p class="text-gray-400 text-sm">Produção Conceitual</p>
+                                </div>
+                                <div class="flex text-sm text-gray-300 font-medium bg-brand-dark px-3 py-1.5 rounded-lg border border-gray-700">
+                                    <span class="flex items-center gap-1.5"><i class="fas fa-play text-brand-accent"></i> 45K</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2">
+                                <span class="px-3 py-1 bg-brand-accent/20 text-brand-accent border border-brand-accent/30 text-[10px] rounded-full font-bold uppercase">Produção Executiva</span>
+                                <span class="px-3 py-1 bg-gray-800 text-gray-300 text-[10px] rounded-full font-medium uppercase">Direção</span>
+                            </div>
+                        </div>
+                    </article>
+
+                </div>
+                
+                <div class="text-center mt-16 fade-in-up">
+                    <a href="https://vimeo.com/feaudiovisual" target="_blank" class="inline-flex items-center gap-3 text-white hover:text-brand-accent transition-colors font-semibold group bg-brand-dark px-8 py-4 rounded-full border border-gray-800 hover:border-brand-accent">
+                        Ver galeria completa no Vimeo 
+                        <i class="fas fa-arrow-right transform group-hover:translate-x-1 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="servicos" class="py-24 bg-brand-dark">
+            <div class="max-w-7xl mx-auto px-6 lg:px-8">
+                <div class="text-center mb-16 fade-in-up">
+                    <h2 class="font-heading text-3xl md:text-5xl font-bold text-white">Domínio Completo da Produção</h2>
+                    <p class="mt-4 text-gray-400 max-w-2xl mx-auto">Do rascunho da ideia à entrega do arquivo final, possuo expertise nas principais etapas do funil criativo audiovisual.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Service 1 -->
+                    <div class="bg-brand-black p-8 rounded-2xl border border-gray-800 hover:-translate-y-2 transition-transform duration-300 fade-in-up">
+                        <i class="fas fa-pen-nib text-3xl text-brand-accent mb-6 block"></i>
+                        <h3 class="text-xl font-bold text-white mb-3">Roteiro</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Desenvolvimento de storytelling, ganchos de retenção e estrutura narrativa focada na sua persona.</p>
+                    </div>
+                    <!-- Service 2 -->
+                    <div class="bg-brand-black p-8 rounded-2xl border border-gray-800 hover:-translate-y-2 transition-transform duration-300 fade-in-up" style="transition-delay: 100ms;">
+                        <i class="fas fa-video text-3xl text-brand-accent mb-6 block"></i>
+                        <h3 class="text-xl font-bold text-white mb-3">Direção</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Condução de atores/apresentadores, decupagem de cenas e direção de arte para um visual impecável.</p>
+                    </div>
+                    <!-- Service 3 -->
+                    <div class="bg-brand-black p-8 rounded-2xl border border-gray-800 hover:-translate-y-2 transition-transform duration-300 fade-in-up" style="transition-delay: 200ms;">
+                        <i class="fas fa-film text-3xl text-brand-accent mb-6 block"></i>
+                        <h3 class="text-xl font-bold text-white mb-3">Filmagem e Edição</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Captação de imagens de alto nível e montagem dinâmica, unindo técnica e ritmo para contar sua história.</p>
+                    </div>
+                    <!-- Service 4 -->
+                    <div class="bg-brand-black p-8 rounded-2xl border border-gray-800 hover:-translate-y-2 transition-transform duration-300 fade-in-up" style="transition-delay: 300ms;">
+                        <i class="fas fa-headphones text-3xl text-brand-accent mb-6 block"></i>
+                        <h3 class="text-xl font-bold text-white mb-3">Áudio & Música</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Sound design, limpeza de diálogos, locução profissional e produção de trilhas originais.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section / CTA -->
+        <section id="contato" class="py-24 bg-brand-black relative overflow-hidden">
+            <!-- Efeito luminoso no fundo -->
+            <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3/4 h-3/4 bg-brand-accent opacity-5 blur-[150px] rounded-full pointer-events-none"></div>
+
+            <div class="max-w-4xl mx-auto px-6 lg:px-8 relative z-10 text-center fade-in-up">
+                <h2 class="font-heading text-4xl md:text-6xl font-bold text-white mb-6">Pronto para elevar o nível da sua comunicação?</h2>
+                <p class="text-xl text-gray-400 mb-10 font-light">
+                    Vamos discutir como o audiovisual de alto padrão pode transformar os resultados da sua marca na região de Campinas.
+                </p>
+                
+                <div class="bg-brand-gray p-8 md:p-12 rounded-3xl border border-gray-800 shadow-2xl">
+                    <p class="text-gray-300 mb-8 text-lg">A forma mais rápida de falar comigo é preenchendo os dados do projeto via WhatsApp:</p>
+                    <a href="#" class="open-wa-modal inline-flex items-center justify-center gap-3 w-full sm:w-auto bg-[#25D366] text-white px-10 py-5 rounded-full font-bold text-lg hover:bg-[#1ebd5a] transition-all hover:scale-105 shadow-[0_0_20px_rgba(37,211,102,0.3)]">
+                        <i class="fab fa-whatsapp text-2xl"></i> Iniciar Orçamento
+                    </a>
+                    
+                    <div class="mt-8 flex items-center justify-center gap-4 text-gray-500">
+                        <span class="w-12 h-px bg-gray-700"></span>
+                        <span class="text-sm uppercase tracking-widest">ou envie um e-mail</span>
+                        <span class="w-12 h-px bg-gray-700"></span>
+                    </div>
+                    
+                    <p class="mt-6">
+                        <a href="mailto:contato@felipeaudiovisual.com.br" class="text-xl font-medium text-white hover:text-brand-accent transition-colors">
+                            contato@felipeaudiovisual.com.br
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-[#050505] py-12 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="text-center md:text-left">
+                <a href="#" class="font-heading font-bold text-xl text-white block mb-2">
+                    FELIPE<span class="text-brand-accent">AUDIOVISUAL</span>
+                </a>
+                <p class="text-gray-600 text-sm">Produção Audiovisual • Grande Campinas, SP</p>
+            </div>
+            
+            <div class="flex gap-6">
+                <a href="#" class="text-gray-500 hover:text-brand-accent transition-colors text-xl" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="text-gray-500 hover:text-brand-accent transition-colors text-xl" aria-label="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+                <a href="#" class="text-gray-500 hover:text-brand-accent transition-colors text-xl" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" class="text-gray-500 hover:text-brand-accent transition-colors text-xl" aria-label="Vimeo">
+                    <i class="fab fa-vimeo-v"></i>
+                </a>
+            </div>
+        </div>
+        <div class="text-center mt-12 text-gray-700 text-xs">
+            &copy; 2026 Felipe Audiovisual. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <!-- WhatsApp Modal -->
+    <div id="wa-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center bg-black/80 backdrop-blur-sm transition-all duration-300">
+        <div class="bg-brand-gray p-8 rounded-3xl border border-gray-800 w-full max-w-md mx-4 relative transform transition-transform duration-300 scale-95 opacity-0 shadow-2xl" id="wa-modal-content">
+            <button id="close-modal" class="absolute top-5 right-5 text-gray-400 hover:text-white transition-colors bg-brand-dark rounded-full w-8 h-8 flex items-center justify-center">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="text-center mb-6">
+                <i class="fab fa-whatsapp text-4xl text-[#25D366] mb-3"></i>
+                <h3 class="font-heading text-2xl font-bold text-white mb-1">Vamos falar do seu projeto</h3>
+                <p class="text-gray-400 text-sm">Preencha rapidamente para um atendimento ágil.</p>
+            </div>
+            
+            <form id="wa-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm text-gray-400 mb-1 ml-1">Seu Nome *</label>
+                    <input type="text" id="wa-nome" required placeholder="Como devo te chamar?" class="w-full bg-brand-dark border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder-gray-600">
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-400 mb-1 ml-1">Empresa / Projeto</label>
+                    <input type="text" id="wa-empresa" placeholder="Sua marca ou nicho" class="w-full bg-brand-dark border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder-gray-600">
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-400 mb-1 ml-1">Local da Produção</label>
+                    <input type="text" id="wa-local" placeholder="Ex: Campinas, Paulínia..." class="w-full bg-brand-dark border border-gray-700 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-brand-accent transition-colors placeholder-gray-600">
+                </div>
+                <div>
+                    <label class="block text-sm text-gray-400 mb-1 ml-1">Data Prevista</label>
+                    <input type="date" id="wa-data" class="w-full bg-brand-dark border border-gray-700 rounded-xl px-4 py-3 text-gray-300 focus:outline-none focus:border-brand-accent transition-colors [color-scheme:dark]">
+                </div>
+                <button type="submit" class="w-full bg-[#25D366] text-white font-bold py-4 rounded-xl mt-6 hover:bg-[#1ebd5a] transition-colors flex items-center justify-center gap-2 shadow-lg">
+                    Iniciar Conversa no WhatsApp <i class="fas fa-paper-plane text-sm"></i>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile Menu Toggle
+            const btn = document.getElementById('mobile-menu-btn');
+            const menu = document.getElementById('mobile-menu');
+            const menuIcon = btn.querySelector('i');
+
+            btn.addEventListener('click', () => {
+                menu.classList.toggle('hidden');
+                if (menu.classList.contains('hidden')) {
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                } else {
+                    menuIcon.classList.remove('fa-bars');
+                    menuIcon.classList.add('fa-times');
+                }
+            });
+
+            // Fechar menu mobile ao clicar num link
+            const mobileLinks = menu.querySelectorAll('a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    menu.classList.add('hidden');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                });
+            });
+
+            // Scroll Animation (Intersection Observer)
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.15
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Anima apenas uma vez
+                    }
+                });
+            }, observerOptions);
+
+            const fadeElements = document.querySelectorAll('.fade-in-up');
+            fadeElements.forEach(el => observer.observe(el));
+            
+            // Navbar Background Effect on Scroll
+            const header = document.querySelector('header');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    header.classList.add('shadow-lg');
+                    header.style.background = 'rgba(10, 10, 10, 0.95)';
+                } else {
+                    header.classList.remove('shadow-lg');
+                    header.style.background = 'rgba(10, 10, 10, 0.8)';
+                }
+            });
+
+            // Lógica do Modal do WhatsApp
+            const waBtns = document.querySelectorAll('.open-wa-modal');
+            const modal = document.getElementById('wa-modal');
+            const modalContent = document.getElementById('wa-modal-content');
+            const closeBtn = document.getElementById('close-modal');
+            const waForm = document.getElementById('wa-form');
+
+            const openModal = (e) => {
+                e.preventDefault();
+                modal.classList.remove('hidden');
+                // Trigger reflow para a transição funcionar
+                void modal.offsetWidth;
+                modalContent.classList.remove('scale-95', 'opacity-0');
+                modalContent.classList.add('scale-100', 'opacity-100');
+            };
+
+            const closeModal = () => {
+                modalContent.classList.remove('scale-100', 'opacity-100');
+                modalContent.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                }, 300); // tempo idêntico à transição (duration-300)
+            };
+
+            waBtns.forEach(btn => btn.addEventListener('click', openModal));
+            closeBtn.addEventListener('click', closeModal);
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            // Envio do formulário via API do WhatsApp
+            waForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                const nome = document.getElementById('wa-nome').value.trim();
+                const empresa = document.getElementById('wa-empresa').value.trim() || 'Não informada';
+                const local = document.getElementById('wa-local').value.trim() || 'Não definido';
+                let data = document.getElementById('wa-data').value;
+                
+                if(data) {
+                    const [ano, mes, dia] = data.split('-');
+                    data = `${dia}/${mes}/${ano}`;
+                } else {
+                    data = 'Em aberto';
+                }
+
+                // Montagem da mensagem amigável (Quebra-gelo)
+                const message = `Olá Felipe! Gostaria de falar sobre um projeto audiovisual.\n\n*Meu Nome:* ${nome}\n*Empresa/Projeto:* ${empresa}\n*Local da Produção:* ${local}\n*Data prevista:* ${data}`;
+                
+                // Formatação para URL e abertura de nova aba
+                const encodedMessage = encodeURIComponent(message);
+                const waNumero = "5519981819846";
+                const waUrl = `https://wa.me/${waNumero}?text=${encodedMessage}`;
+                
+                window.open(waUrl, '_blank');
+                
+                // Limpa e fecha modal após abrir o whats
+                closeModal();
+                waForm.reset();
+            });
+        });
+    </script>
+</body>
+</html>
