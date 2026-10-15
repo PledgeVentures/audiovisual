@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Reparo Mac - Produção e Edição</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+        .strikethrough { text-decoration: line-through; color: #6b7280; }
+        .timer-active { color: #10b981; }
+        .timer-warning { color: #f59e0b; }
+        .timer-danger { color: #ef4444; }
+        
+        /* Custom Checkbox Styling for better touch targets */
+        input[type="checkbox"] { 
+            width: 1.5rem; 
+            height: 1.5rem; 
+            accent-color: #3b82f6; 
+            cursor: pointer; 
+            border-radius: 0.25rem;
+            flex-shrink: 0;
+        }
+        
+        /* Tab states */
+        .tab-active { border-bottom: 3px solid #3b82f6; color: #3b82f6; font-weight: bold; background-color: rgba(59, 130, 246, 0.1); }
+        .tab-inactive { color: #9ca3af; border-bottom: 3px solid transparent; }
+        
+        /* Hide scrollbar for cleaner look */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #111827; }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100 pb-20 antialiased">
+
+    <!-- Sticky Header & Tabs -->
+    <header class="sticky top-0 z-50 bg-gray-900/95 backdrop-blur border-b border-gray-700 shadow-md">
+        <div class="max-w-2xl mx-auto">
+            <div class="p-4 flex justify-between items-center">
+                <div>
+                    <h1 class="text-2xl font-bold text-white tracking-tight">Reparo Mac</h1>
+                    <p class="text-xs text-blue-400 font-mono tracking-wide" id="header-subtitle">SHOOTING STORYBOARD (120 MIN)</p>
+                </div>
+            </div>
+            <!-- Tabs -->
+            <div class="flex border-t border-gray-800">
+                <button onclick="switchTab('shoot')" id="tab-btn-shoot" class="flex-1 py-3 text-center tab-active transition-all duration-200">
+                    <i class="fa-solid fa-camera mr-2"></i> Gravação
+                </button>
+                <button onclick="switchTab('edit')" id="tab-btn-edit" class="flex-1 py-3 text-center tab-inactive transition-all duration-200 hover:text-gray-300">
+                    <i class="fa-solid fa-film mr-2"></i> Edição
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ABA 1: GRAVAÇÃO -->
+    <main id="tab-shoot" class="max-w-2xl mx-auto p-4 space-y-6">
+        
+        <div class="bg-gray-800 rounded-xl p-4 border-l-4 border-blue-500 shadow-sm">
+            <h2 class="font-bold text-lg mb-2 text-gray-100"><i class="fa-solid fa-video mr-2 text-blue-400"></i> Diretrizes da Gravação</h2>
+            <div class="bg-gray-900 p-3 rounded-lg text-xs font-mono text-gray-400 mb-2 border border-gray-700">
+                <p>Formato: Vertical 9:16 · Clipes de 5-8s · 2 takes por plano</p>
+                <p>Equipamento: 4K a 30fps (60fps apenas para detalhes)</p>
+            </div>
+            <p class="text-blue-400 text-sm font-semibold mt-2">Regra: Comece a gravar ANTES da ação, mantenha firme, deixe a ação terminar. 1-2s limpos antes e depois.</p>
+        </div>
+
+        <!-- PRIORITY CHECKLIST SHOOT -->
+        <div class="bg-gray-800 rounded-xl border border-emerald-600/50 shadow-lg overflow-hidden">
+            <div class="bg-emerald-900/60 p-4 flex justify-between items-center cursor-pointer toggle-btn hover:bg-emerald-800/60 transition-colors">
+                <h2 class="font-bold text-emerald-300"><i class="fa-solid fa-star mr-2"></i> FINAL PRIORITY CHECKLIST</h2>
+                <i class="fa-solid fa-chevron-down transition-transform text-emerald-400"></i>
+            </div>
+            <div class="p-4 space-y-4 content-area bg-gray-800">
+                <p class="text-xs text-emerald-400/80 mb-2 font-bold uppercase tracking-wider">Se o tempo acabar, garanta isso:</p>
+                <label class="flex items-start gap-4 cursor-pointer group p-2 hover:bg-gray-700/50 rounded-lg transition-colors">
+                    <input type="checkbox" class="mt-1 task-check">
+                    <span class="text-base font-medium group-hover:text-white transition-colors leading-tight text-gray-300">1 sequência real de reparo: diagnóstico, intervenção e resultado.</span>
+                </label>
+                <label class="flex items-start gap-4 cursor-pointer group p-2 hover:bg-gray-700/50 rounded-lg transition-colors">
+                    <input type="checkbox" class="mt-1 task-check">
+                    <span class="text-base font-medium group-hover:text-white transition-colors leading-tight text-gray-300">1 sequência completa e limpa de um Mac seminovo.</span>
+                </label>
+                <label class="flex items-start gap-4 cursor-pointer group p-2 hover:bg-gray-700/50 rounded-lg transition-colors">
+                    <input type="checkbox" class="mt-1 task-check">
+                    <span class="text-base font-medium group-hover:text-white transition-colors leading-tight text-gray-300">1 plano de opções de Macs disponíveis.</span>
+                </label>
+                <label class="flex items-start gap-4 cursor-pointer group p-2 hover:bg-gray-700/50 rounded-lg transition-colors">
+                    <input type="checkbox" class="mt-1 task-check">
+                    <span class="text-base font-medium group-hover:text-white transition-colors leading-tight text-gray-300">1 plano atraente da loja e fachada.</span>
+                </label>
+                <label class="flex items-start gap-4 cursor-pointer group p-2 hover:bg-gray-700/50 rounded-lg transition-colors">
+                    <input type="checkbox" class="mt-1 task-check">
+                    <span class="text-base font-medium group-hover:text-white transition-colors leading-tight text-gray-300">Takes reais de ferramentas de diagnóstico e mãos do técnico.</span>
+                </label>
+                <label class="flex items-start gap-4 cursor-pointer group p-2 hover:bg-gray-700/50 rounded-lg transition-colors">
+                    <input type="checkbox" class="mt-1 task-check">
+                    <span class="text-base font-medium group-hover:text-white transition-colors leading-tight text-gray-300">Pelo menos 2 respostas/áudios do Rogério.</span>
+                </label>
+                <label class="flex items-start gap-4 cursor-pointer group p-2 hover:bg-gray-700/50 rounded-lg transition-colors">
+                    <input type="checkbox" class="mt-1 task-check">
+                    <span class="text-base font-medium group-hover:text-white transition-colors leading-tight text-gray-300">1 take final limpo do produto para o End Card.</span>
+                </label>
+            </div>
+        </div>
+
+        <div id="shoot-blocks" class="space-y-4"></div>
+    </main>
+
+    <!-- ABA 2: EDIÇÃO -->
+    <main id="tab-edit" class="max-w-2xl mx-auto p-4 space-y-6 hidden">
+        
+        <div class="bg-gray-800 rounded-xl p-4 border-l-4 border-blue-500 shadow-sm">
+            <h2 class="font-bold text-lg mb-3 text-gray-100"><i class="fa-solid fa-box-open mr-2 text-blue-400"></i> Entregáveis & Formato</h2>
+            <ul class="text-sm space-y-2 text-gray-300 list-disc list-inside mb-4 pl-2 font-medium">
+                <li>Reel 01 — Apresentação da marca</li>
+                <li>Reel 02 — Prova de competência técnica</li>
+                <li>Reel 03 — Venda de Mac seminovo</li>
+                <li>Reel 04 — Oferta comercial ou aquisição</li>
+            </ul>
+            <div class="bg-gray-900 p-3 rounded-lg text-xs font-mono text-gray-400 border border-gray-700">
+                <p>Formato: Vertical 9:16 · 24 fps · 1080x1920 · H.264</p>
+                <p class="text-blue-400 mt-2 font-bold text-sm">Regra: Nenhuma tarefa pode consumir o tempo da próxima.</p>
+            </div>
+        </div>
+
+        <!-- PRIORITY CHECKLIST EDIT -->
+        <div class="bg-gray-800 rounded-xl border border-emerald-600/50 shadow-lg overflow-hidden">
+            <div class="bg-emerald-900/60 p-4 flex justify-between items-center cursor-pointer toggle-btn hover:bg-emerald-800/60 transition-colors">
+                <h2 class="font-bold text-emerald-300"><i class="fa-solid fa-check-double mr-2"></i> CHECKLIST DE CONCLUSÃO</h2>
+                <i class="fa-solid fa-chevron-down transition-transform text-emerald-400"></i>
+            </div>
+            <div class="p-4 space-y-4 content-area bg-gray-800">
+                <label class="flex items-start gap-4 cursor-pointer group p-2 hover:bg-gray-700/50 rounded-lg transition-colors">
+                    <input type="checkbox" class="mt-1 task-check">
+                    <span class="text-base font-medium group-hover:text-white transition-colors leading-tight text-gray-300">Reel 01, 02, 03 e 04 exportados.</span>
+                </label>
+                <label class="flex items-start gap-4 cursor-pointer group p-2 hover:bg-gray-700/50 rounded-lg transition-colors">
+                    <input type="checkbox" class="mt-1 task-check">
+                    <span class="text-base font-medium group-hover:text-white transition-colors leading-tight text-gray-300">Os quatro arquivos foram reproduzidos e conferidos.</span>
+                </label>
+                <label class="flex items-start gap-4 cursor-pointer group p-2 hover:bg-gray-700/50 rounded-lg transition-colors">
+                    <input type="checkbox" class="mt-1 task-check">
+                    <span class="text-base font-medium group-hover:text-white transition-colors leading-tight text-gray-300">Projeto editável preservado.</span>
+                </label>
+                <label class="flex items-start gap-4 cursor-pointer group p-2 hover:bg-gray-700/50 rounded-lg transition-colors">
+                    <input type="checkbox" class="mt-1 task-check">
+                    <span class="text-base font-medium group-hover:text-white transition-colors leading-tight text-gray-300">Feedback consolidado e correções reexportadas.</span>
+                </label>
+            </div>
+        </div>
+
+        <div id="edit-blocks" class="space-y-4"></div>
+
+        <!-- REGRA TÉCNICA -->
+        <div class="bg-gray-800 rounded-xl p-4 border-l-4 border-purple-500 shadow-sm mt-8">
+            <h2 class="font-bold text-lg mb-3 text-purple-400"><i class="fa-solid fa-film mr-2"></i> REGRA TÉCNICA: ProRes 4K / 60 FPS</h2>
+            <ul class="text-sm space-y-3 text-gray-300 font-medium">
+                <li class="flex gap-2"><i class="fa-solid fa-play mt-1 text-purple-500/70 text-xs"></i> <span><strong>Velocidade normal:</strong> Use o clipe normalmente; o FCP adapta para 24 fps.</span></li>
+                <li class="flex gap-2"><i class="fa-solid fa-backward-step mt-1 text-purple-500/70 text-xs"></i> <span><strong>Câmera lenta (Slo-Mo):</strong> Selecione o clipe > Retime > Automatic Speed.</span></li>
+                <li class="flex gap-2 text-red-400 bg-red-900/20 p-2 rounded-lg border border-red-800/50"><i class="fa-solid fa-triangle-exclamation mt-1 text-xs"></i> <span><strong>Não faça:</strong> Uso indiscriminado de Smooth Slo-Mo ou LUTs sem checar.</span></li>
+            </ul>
+        </div>
+    </main>
+
+    <script>
+        // DATA: SHOOTING
+        const shootBlocks = [
+            { id: "S0", time: "Antes", minutes: 5, title: "BEFORE YOU START", goal: "Preparar ambiente e alinhar com a equipe.", tasks: [ "Pergunte qual reparo está acontecendo agora (priorize ele).", "Selecione 1 Mac em diagnóstico/reparo real e 2-3 seminovos à venda.", "Verifique com Rogério o que NÃO pode aparecer (dados, seriais).", "Limpe os Macs hero e a bancada.", "Lente limpa, foco travado, s/ zoom digital." ] },
+            { id: "S1", time: "Set 1", minutes: 25, title: "REAL REPAIR WORK", goal: "Filmar reparo real (sintoma > diagnóstico > reparo > resultado).", tasks: [ "01. Wide shot da bancada (6s estável).", "02. Medium shot lateral do técnico concentrado.", "03. Close-up mãos/componentes.", "04. Macro: Placa sob o microscópio/ferramenta.", "05. Medição: Multímetro em uso (ferramenta + técnico).", "06. Solda/remoção/microsoldagem (ação real).", "07. Componente defeituoso (close-up estático).", "08. Over-the-shoulder do técnico olhando a placa.", "09. Remontagem/progresso.", "10. Som real: 10s de áudio limpo da oficina s/ fala." ] },
+            { id: "S2", time: "Set 2", minutes: 12, title: "DIAGNOSTIC TOOLS", goal: "Evidenciar o uso de ferramentas profissionais.", tasks: [ "11. Detalhe da ferramenta em uso.", "12. Técnico isolando a falha.", "13. Sintoma inicial (ex: não liga) se seguro/real.", "14. Resultado (ligando/passando no teste) se resolvido.", "15. Checagem funcional (teclado, tela, portas).", "16. Inspeção final com mãos (fundo limpo)." ] },
+            { id: "S3", time: "Set 3", minutes: 23, title: "PREMIUM SEMINOVO", goal: "Takes do produto hero limpo e desejável.", tasks: [ "17. Hero fechado (3/4, espaço negativo p/ texto).", "18. Reveal (abrindo tampa devagar).", "19. 3/4 aberto (tela, teclado, chassi).", "20. Detalhe teclado/trackpad.", "21. Detalhe tela (imagem limpa, sem dados pessoais).", "22. Chassi, quinas e bordas.", "23. Perfil lateral/portas (movimento lateral lento).", "24. Movimento da dobradiça.", "25. Hands-on natural (alguém checando teclado).", "26. Lineup 2-3 Macs juntos.", "27. Segundo Mac (fechado, reveal, 1 detalhe).", "28. Prova de config (tela Sobre Este Mac s/ serial)." ] },
+            { id: "S4", time: "Set 4", minutes: 15, title: "DONOR MACHINES / PARTS", goal: "Mostrar arsenal de peças e reaproveitamento.", tasks: [ "29. Mac danificado aguardando avaliação (clean).", "30. Hardware interno (Mac aberto).", "31. Técnico selecionando peça substituta.", "32. Detalhe de componentes/placas agrupadas.", "33. Armazenamento/Gavetas organizadas.", "34. Inspeção em máquina doadora.", "35. Comparação: Peça ruim vs. Peça nova (se possível)." ] },
+            { id: "S5", time: "Set 5", minutes: 12, title: "SHOP & CUSTOMER", goal: "Contexto do negócio local.", tasks: [ "36. Fachada externa estática.", "37. Movimento aproximando da entrada.", "38. Shot da porta para dentro.", "39. Wide interior (espaço no seu momento mais limpo).", "40. Detalhe prateleiras ou balcão.", "41. Rogério trabalhando (Medium shot natural).", "42. Handoff de equipamento (cliente/balcão).", "43. Close: Mac sendo colocado no balcão." ] },
+            { id: "S6", time: "Set 6", minutes: 18, title: "ROGÉRIO'S VOICE", goal: "Soundbites curtos (2 takes por resposta, usar mic).", tasks: [ "44. O diferencial: 'O que fazem que outros não?'", "45. Filosofia: 'Por que investigar antes de condenar?'", "46. Problema: 'Que tipo de defeito trazer para cá?'", "47. Seminovos: 'Como escolhem os Macs à venda?'", "48. Próximo passo: 'O que a pessoa precisa enviar?'", "Regra: Ele deve repetir parte da pergunta na resposta. Sem jargões inúteis." ] },
+            { id: "S7", time: "Set 7", minutes: 5, title: "FINAL PICKUPS", goal: "Cobrir lacunas finais.", tasks: [ "49. Retrato do Rogério (um p/ câmera, um p/ produto).", "50. Último Hero Shot p/ End Card.", "51. Detalhe de logo/placa (segurar 5s).", "52. Close-ups extras de transição.", "53. Checar material: Confirme o foco e as prioridades." ] }
+        ];
+
+        // DATA: EDITING
+        const editBlocks = [
+            { id: "01", time: "13:00", minutes: 10, title: "PREPARAÇÃO", goal: "Pastas e 4 projetos (1080x1920 24fps) criados.", tasks: [ "Criar pasta REPARO_MAC_DELIVERY (01_PREVIEWS, 02_FINAL, 03_PROJECT).", "Criar Library no FCP. Criar Projetos: 01_MARCA, 02_REPARO, 03_SEMINOVO, 04_OFERTA." ] },
+            { id: "02", time: "13:10", minutes: 15, title: "IMPORTAÇÃO RÁPIDA", goal: "Material favoritado e dividido.", tasks: [ "Importar (Leave in place). Favoritar takes rápidos.", "Separar: REPARO, PRODUTO, LOJA, OFERTA.", "Definir caso pro Reel 02 e pro Reel 03. NÃO assista tudo." ] },
+            { id: "03", time: "13:25", minutes: 10, title: "SISTEMA VISUAL", goal: "Tipografia, Cores e End Card definidos.", tasks: [ "Definir 1 fonte e estilo de título base.", "Criar End Card (1.5-2s).", "Escolher 2 músicas (institucional/técnica)." ] },
+            { id: "04", time: "13:35", minutes: 20, title: "REEL 01 — MARCA", goal: "Hook > Competência > Produto > Identidade > CTA", tasks: [ "00-02s: Hook. Texto: 'Seu Mac merece uma segunda chance.'", "02-14s: Oficina > Seminovos > Identidade.", "14-18s: End Card." ] },
+            { id: "05", time: "13:55", minutes: 35, title: "REEL 02 — REPARO", goal: "Intervenção técnica real e convincente.", tasks: [ "00-03s: Sintoma/Texto.", "03-20s: Diagnóstico > Intervenção > Teste.", "20-25s: CTA. NÃO misture casos falsos." ] },
+            { id: "06", time: "14:30", minutes: 25, title: "REEL 03 — SEMINOVO", goal: "Desejo focado em 1 equipamento real.", tasks: [ "Hero > Revelação > Detalhes > 1 Tela de Config > CTA.", "NÃO inventar especificações nem comparar modelos." ] },
+            { id: "07", time: "14:55", minutes: 20, title: "REEL 04 — OFERTA", goal: "1 Serviço validado ou Aquisição.", tasks: [ "Montar 4 a 6 takes focados no problema > solução > CTA.", "Reaproveitar grafismos do Reel 01." ] },
+            { id: "08", time: "15:15", minutes: 15, title: "ACABAMENTO GLOBAL", goal: "Corrigir áudio, cor extrema e textos.", tasks: [ "Conferir textos e legibilidade.", "Ajustar volume de áudio/músicas.", "NÃO criar novas edições." ] },
+            { id: "09", time: "15:30", minutes: 20, title: "EXPORTAÇÃO", goal: "Os 4 vídeos em H.264 para preview.", tasks: [ "Exportar H.264 para a pasta 01_PREVIEWS.", "NÃO exporte ProRes social agora." ] },
+            { id: "10", time: "15:50", minutes: 10, title: "QC E ENTREGA", goal: "Arquivos revisados.", tasks: [ "Reproduzir tudo (checar áudio/cortes/textos).", "Preparar para apresentar ao Rogério." ] },
+            { id: "11", time: "16:00", minutes: 30, title: "CORREÇÃO FINAL", goal: "1 Rodada de feedback consolidada.", tasks: [ "Anotar tudo em 1 lista.", "Corrigir fatos, áudio e pequenos cortes. Reexportar." ] }
+        ];
+
+        // RENDER BLOCKS
+        function renderBlocks(containerId, data) {
+            const container = document.getElementById(containerId);
+            data.forEach((block) => {
+                const totalSeconds = block.minutes * 60;
+                const html = `
+                <div class="bg-gray-800 rounded-xl shadow-lg border border-gray-700/60 overflow-hidden accordion-item">
+                    <div class="bg-gray-700/60 p-4 flex justify-between items-center cursor-pointer toggle-btn hover:bg-gray-600/80 transition-colors">
+                        <div>
+                            <span class="text-blue-400 font-mono text-xs font-bold tracking-wider">${block.time} | ${block.minutes} MIN</span>
+                            <h3 class="font-bold text-lg text-gray-100">${block.id}: ${block.title}</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down transition-transform text-gray-400 text-lg"></i>
+                    </div>
+                    
+                    <div class="p-4 content-area hidden bg-gray-800/90">
+                        <div class="flex items-center gap-4 bg-gray-900 p-4 rounded-xl mb-5 border border-gray-700/80 shadow-inner">
+                            <i class="fa-regular fa-clock text-gray-500 text-2xl"></i>
+                            <span class="text-4xl font-mono timer-display tracking-tight text-gray-200" data-time="${totalSeconds}">${block.minutes.toString().padStart(2, '0')}:00</span>
+                            <div class="flex gap-2 ml-auto">
+                                <button class="btn-start bg-blue-600 hover:bg-blue-500 active:bg-blue-700 text-white px-5 py-2.5 rounded-lg font-bold shadow-md transition-all w-24">Start</button>
+                                <button class="btn-pause bg-amber-500 hover:bg-amber-400 active:bg-amber-600 text-white px-5 py-2.5 rounded-lg font-bold shadow-md hidden transition-all w-24">Pause</button>
+                                <button class="btn-reset bg-gray-600 hover:bg-gray-500 active:bg-gray-700 text-white px-4 py-2.5 rounded-lg font-bold shadow-md transition-all"><i class="fa-solid fa-rotate-right"></i></button>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-900/20 text-blue-300 p-3.5 rounded-lg mb-5 text-sm font-medium border border-blue-500/30 flex items-start gap-3">
+                            <i class="fa-solid fa-bullseye mt-0.5 text-blue-400"></i>
+                            <span>${block.goal}</span>
+                        </div>
+
+                        <div class="space-y-4">
+                            ${block.tasks.map(task => {
+                                const isDanger = task.includes("NÃO");
+                                const textColor = isDanger ? "text-red-400 font-semibold" : "text-gray-300 font-medium";
+                                const bgHover = isDanger ? "hover:bg-red-900/10" : "hover:bg-gray-700/50";
+                                return `
+                                <label class="flex items-start gap-4 cursor-pointer group p-2 ${bgHover} rounded-lg transition-colors">
+                                    <input type="checkbox" class="mt-0.5 task-check flex-shrink-0 border-gray-600">
+                                    <span class="text-base ${textColor} transition-colors group-hover:text-white leading-snug">${task}</span>
+                                </label>`;
+                            }).join('')}
+                        </div>
+                    </div>
+                </div>`;
+                container.insertAdjacentHTML('beforeend', html);
+            });
+        }
+
+        renderBlocks('shoot-blocks', shootBlocks);
+        renderBlocks('edit-blocks', editBlocks);
+
+        // UI INTERACTIONS
+        function initInteractions(containerId) {
+            const container = document.getElementById(containerId);
+            
+            // Accordions
+            container.querySelectorAll('.toggle-btn').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const content = btn.nextElementSibling;
+                    const icon = btn.querySelector('.fa-chevron-down');
+                    content.classList.toggle('hidden');
+                    icon.style.transform = content.classList.contains('hidden') ? 'rotate(0deg)' : 'rotate(180deg)';
+                });
+            });
+
+            // Expand first item automatically
+            const firstToggle = container.querySelector('.toggle-btn');
+            if(firstToggle) firstToggle.click();
+
+            // Strikethrough Logic
+            container.querySelectorAll('.task-check').forEach(box => {
+                box.addEventListener('change', (e) => {
+                    const span = e.target.nextElementSibling;
+                    e.target.checked ? span.classList.add('strikethrough') : span.classList.remove('strikethrough');
+                });
+            });
+
+            // Timer Logic
+            container.querySelectorAll('.timer-display').forEach(display => {
+                const originalTime = parseInt(display.getAttribute('data-time'));
+                let currentTime = originalTime;
+                let interval = null;
+                
+                const wrap = display.parentElement;
+                const btnStart = wrap.querySelector('.btn-start');
+                const btnPause = wrap.querySelector('.btn-pause');
+                const btnReset = wrap.querySelector('.btn-reset');
+
+                const updateDisplay = () => {
+                    const m = Math.floor(currentTime / 60).toString().padStart(2, '0');
+                    const s = (currentTime % 60).toString().padStart(2, '0');
+                    display.textContent = `${m}:${s}`;
+                    
+                    // Reset classes
+                    display.className = 'text-4xl font-mono timer-display tracking-tight transition-colors duration-300';
+                    const percent = currentTime / originalTime;
+                    
+                    if (currentTime === 0) {
+                        display.classList.add('timer-danger');
+                    } else if (percent <= 0.2) {
+                        display.classList.add('timer-warning');
+                    } else if (interval) {
+                        display.classList.add('timer-active');
+                    } else {
+                        display.classList.add('text-gray-200');
+                    }
+                };
+
+                btnStart.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    if(!interval && currentTime > 0) {
+                        btnStart.classList.add('hidden');
+                        btnPause.classList.remove('hidden');
+                        interval = setInterval(() => {
+                            currentTime--; 
+                            updateDisplay();
+                            if(currentTime <= 0) {
+                                clearInterval(interval); interval = null;
+                                btnPause.classList.add('hidden'); 
+                                btnStart.classList.remove('hidden');
+                                btnStart.disabled = true; 
+                                btnStart.classList.add('opacity-50', 'cursor-not-allowed');
+                            }
+                        }, 1000);
+                        updateDisplay();
+                    }
+                });
+
+                btnPause.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    clearInterval(interval); interval = null;
+                    btnPause.classList.add('hidden'); 
+                    btnStart.classList.remove('hidden');
+                    updateDisplay();
+                });
+
+                btnReset.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    clearInterval(interval); interval = null;
+                    currentTime = originalTime;
+                    btnPause.classList.add('hidden'); 
+                    btnStart.classList.remove('hidden');
+                    btnStart.disabled = false; 
+                    btnStart.classList.remove('opacity-50', 'cursor-not-allowed');
+                    updateDisplay();
+                });
+                
+                // Initialize text color
+                updateDisplay();
+            });
+        }
+
+        initInteractions('tab-shoot');
+        initInteractions('tab-edit');
+
+        // TABS LOGIC
+        function switchTab(tab) {
+            const elShoot = document.getElementById('tab-shoot');
+            const elEdit = document.getElementById('tab-edit');
+            const btnShoot = document.getElementById('tab-btn-shoot');
+            const btnEdit = document.getElementById('tab-btn-edit');
+            const subtitle = document.getElementById('header-subtitle');
+
+            if(tab === 'shoot') {
+                elShoot.classList.remove('hidden');
+                elEdit.classList.add('hidden');
+                
+                btnShoot.className = "flex-1 py-3 text-center tab-active transition-all duration-200";
+                btnEdit.className = "flex-1 py-3 text-center tab-inactive transition-all duration-200 hover:text-gray-300 hover:bg-gray-800/50";
+                
+                subtitle.innerText = "SHOOTING STORYBOARD (120 MIN)";
+            } else {
+                elEdit.classList.remove('hidden');
+                elShoot.classList.add('hidden');
+                
+                btnEdit.className = "flex-1 py-3 text-center tab-active transition-all duration-200";
+                btnShoot.className = "flex-1 py-3 text-center tab-inactive transition-all duration-200 hover:text-gray-300 hover:bg-gray-800/50";
+                
+                subtitle.innerText = "EDITING RUNBOOK (180 MIN)";
+            }
+        }
+    </script>
+</body>
+</html>
